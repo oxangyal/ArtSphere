@@ -1,6 +1,6 @@
 <%= link_to product do %>
-  <div id="<%= dom_id product %>" class="max-w-sm bg-white shadow rounded-lg p-4 mx-auto">
-  <%= image_tag product.images.first, class:"w-full h-80 object-cover rounded-lg hover:brightness-75 transition:all duration:250" if product.images.any?  %> <!-- Fix height issue -->
+  <div id="<%= dom_id product %>" class="max-w-sm  shadow rounded-lg p-2 mx-auto">
+  <%= image_tag product.images.first, class:"w-full h-60 object-cover rounded-lg hover:brightness-75 transition:all duration:250" if product.images.any?  %> <!-- Fix height issue -->
   
   <p class="my-5">
     <%= product.name %>
