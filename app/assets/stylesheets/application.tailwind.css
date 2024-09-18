@@ -13,8 +13,8 @@
 */
 @layer components{
   @font-face {
-    font-family: "Maghelia";
-    src: url("Maghelia.otf");
+    font-family: "OldLondon";
+    src: url("OldLondon.ttf");
   }
 }
 @import 'actiontext.css';

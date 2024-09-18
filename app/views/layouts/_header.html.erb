@@ -1,26 +1,25 @@
-
 <header class="relative">
-
+  <!-- Background image -->
   <div class="absolute inset-0">
-    <%= image_tag "artistic.jpg", class: "w-full h-64 object-cover" %>
+    <%= image_tag "artistic.jpg", class: "w-full h-40 object-cover" %>
   </div>
 
-  <nav class="relative z-10 bg-opacity-75 bg-white shadow-md">
-    <div class="container mx-auto flex justify-between items-center py-4 px-6">
- 
-      <div class="text-2xl font-bold text-indigo-600">
-        <%= link_to "ArtSphere", root_path %>
+  <div class="relative z-10 text-center pt-16 text-white">
+    <h1 class="text-7xl font-bold font-mag">ArtSphere</h1>
+  </div>
+
+  <nav class="relative z-10  bg-black shadow-md mt-6">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      
+      <div class="flex space-x-4">
+        <%= link_to 'Home', root_path, class: 'text-gray-100 hover:text-gray-600 font-medium' %>
+        <%= link_to 'Gallery', root_path, class: 'text-gray-100 hover:text-gray-600 font-medium' %>
       </div>
 
-
-      <div class="space-x-4">
-      
-      
+      <!-- Right: Login button -->
+      <div>
+        <%= link_to 'Login', new_admin_session_path, class: 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600' %>
       </div>
     </div>
   </nav>
-
-  <div class="relative z-10 text-center pt-16 text-white">
-    <h1 class="text-4xl font-bold">ArtSphere</h1>
-  </div>
 </header>
