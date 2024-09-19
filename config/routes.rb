@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   resources :products
   devise_for :admins
   resource :admin, only: [:show], controller: :admin
