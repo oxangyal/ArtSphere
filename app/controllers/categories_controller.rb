@@ -37,8 +37,10 @@ class CategoriesController < ApplicationController
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
+    new_category_params = category_params.to_unsafe_h
+    new_category_params.delete("images") if new_category_params["images"].all?(&:blank?)
     respond_to do |format|
-      if @category.update(category_params)
+      if @category.update(new_category_params)
         format.html { redirect_to category_url(@category), notice: "Category was successfully updated." }
         format.json { render :show, status: :ok, location: @category }
       else
