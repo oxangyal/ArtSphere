@@ -14,9 +14,13 @@
       <div class="flex space-x-4">
         <%= link_to 'Home', root_path, class: 'text-gray-100 hover:text-gray-600 font-medium' %>
         <%= link_to 'Gallery', root_path, class: 'text-gray-100 hover:text-gray-600 font-medium' %>
+        <% content_for :title, "Products" %>
+   
+   <%= link_to "Shop by category", categories_path, class: "text-gray-100 hover:text-gray-600 font-medium" %>
+ 
       </div>
 
-      <!-- Right: Login button -->
+  
       <div>
         <%= link_to 'Login', new_admin_session_path, class: 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600' %>
       </div>
