@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :categories
   devise_for :admins
+  devise_for :users
+  
+  resources :categories
   resources :products do 
     resource :buy_now, only: [:show, :create], controller: :buy_now do 
       get "success", on: :collection
