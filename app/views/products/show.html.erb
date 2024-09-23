@@ -27,6 +27,7 @@
       <span class="bg-green-500 p-2 rounded-lg text-green-50 mr-auto"> <%= number_to_currency @product.price %> </span>
       <div class="flex justify-between gap-8">
         <%= link_to "Buy Now", product_buy_now_path(@product), class: "rounded-md font-semibold p-4 text-center text-md bg-yellow-400 hover:bg-yellow-500 w-60 mr-auto" %>
+        <%= link_to "Add to Cart", carts_path(product_id: @product.id), class: "rounded-md font-semibold p-4 text-center text-md bg-gray-400 hover:bg-gray-500 w-60 mr-auto" %>
        
       </div>
     </div>
@@ -36,7 +37,8 @@
     <div class="w-full flex justify-center items-center mt-16 gap-4">
       <%= link_to "Edit this product", edit_product_path(@product), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       <%= link_to "Back to products", products_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= button_to "Destroy this product", @product, method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+     <%= button_to "Destroy this product", @product, method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium", 
+    data: { turbo_method: :delete } %>
     </div>
   <% end %>
 </div>

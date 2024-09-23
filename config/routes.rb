@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       get "success", on: :collection
     end
   end
+
+  resources :carts, only: [:create]
+  
   resource :admin, only: [:show], controller: :admin
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

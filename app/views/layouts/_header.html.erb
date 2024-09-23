@@ -1,5 +1,4 @@
 <header class="relative">
-  <!-- Background image -->
   <div class="absolute inset-0">
     <%= image_tag "artistic.jpg", class: "w-full h-40 object-cover" %>
   </div>
@@ -8,21 +7,22 @@
     <h1 class="text-7xl font-bold font-mag">Art Sphere</h1>
   </div>
 
-  <nav class="relative z-10  bg-black shadow-md mt-6">
+  <nav class="relative z-10 bg-black shadow-md mt-6">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      
       <div class="flex space-x-4">
+        <%= image_tag("picture.png", class: "w-8 object-cover") %>
         <%= link_to 'Home', root_path, class: 'text-gray-100 hover:text-gray-600 font-medium' %>
         <%= link_to 'Gallery', root_path, class: 'text-gray-100 hover:text-gray-600 font-medium' %>
         <% content_for :title, "Products" %>
-   
-   <%= link_to "Shop by category", categories_path, class: "text-gray-100 hover:text-gray-600 font-medium" %>
- 
+
+        <%= link_to "Shop by category", categories_path, class: "text-gray-100 hover:text-gray-600 font-medium" %>
       </div>
 
-  
-      <div>
+      <div class="flex items-center space-x-4">
         <%= link_to 'Login', new_admin_session_path, class: 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600' %>
+        <%= link_to '#', class: 'inline-block' do %>
+          <%= image_tag("shopping-cart.png", class: "w-6 object-cover") %>
+        <% end %>
       </div>
     </div>
   </nav>
