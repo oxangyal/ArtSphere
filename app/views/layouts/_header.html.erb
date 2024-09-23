@@ -18,11 +18,17 @@
         <%= link_to "Shop by category", categories_path, class: "text-gray-100 hover:text-gray-600 font-medium" %>
       </div>
 
-      <div class="flex items-center space-x-4">
-        <%= link_to 'Login', new_user_session_path, class: 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600' %>
+      <div class="flex items-center space-x-6">
+      <div>
+      <% if current_user %>
+      <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: 'bg-red-400 text-white py-2 px-4  rounded hover:bg-red-500 mr-4' %>
+      <% else %>
+       <%= link_to 'Login', new_user_session_path, class: 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 mr-4' %>
+      <% end %>
         <%= link_to '#', class: 'inline-block' do %>
           <%= image_tag("shopping-cart.png", class: "w-6 object-cover") %>
         <% end %>
+        </div>
       </div>
     </div>
   </nav>
