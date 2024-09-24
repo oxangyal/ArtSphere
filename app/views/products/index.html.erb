@@ -3,7 +3,20 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center mb-6 text-center">
+  <div class="flex justify-between items-center mb-4 text-center">
+ 
+    <div class="flex items-center space-x-3">
+      <span class="text-gray-700 font-medium">Sort by</span>
+      <div class="relative inline-block w-60">
+        <select id="sort-menu" class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500">
+        <option value="<%= products_path(sort: 'price', direction: 'asc') %>">Price (Low to High)</option>
+        <option value="<%= products_path(sort: 'price', direction: 'desc') %>">Price (High to Low)</option>
+        <option value="<%= products_path(sort: 'name', direction: 'asc') %>">Name (A-Z)</option>
+        <option value="<%= products_path(sort: 'name', direction: 'desc') %>">Name (Z-A)</option>
+          
+        </select>
+      </div>
+    </div>
   </div>
 
   <div id="products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 mt-8">
@@ -13,7 +26,10 @@
       </div>
     <% end %>
   </div>
-
-
-
 </div>
+
+<script>
+  document.getElementById('sort-menu').addEventListener('change', function() {
+    window.location.href = this.value;
+  });
+</script>

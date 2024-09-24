@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.all
+
+    @products = @products.order(sort_column + " " + sort_direction)
   end
 
   # GET /products/1 or /products/1.json
@@ -69,4 +71,13 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :description, :price, :category_id, images: [])
     end
+
+    def sort_column
+      Product.column_names.include?(params[:sort]) ? params[:sort] : 'name'
+    end
+  
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+    end
+
 end
