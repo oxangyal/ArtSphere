@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
 
-    @products = @products.order(sort_column + " " + sort_direction)
+    @products = @products.order("#{sort_column} #{sort_direction}")
   end
 
   # GET /products/1 or /products/1.json
@@ -77,7 +77,14 @@ class ProductsController < ApplicationController
     end
   
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+      if params[:direction] == "asc"
+        "desc"
+      else
+        "asc"
+      end
     end
-
+  
+    def current_direction
+      params[:direction] || "asc"
+    end
 end

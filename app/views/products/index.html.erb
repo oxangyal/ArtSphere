@@ -8,13 +8,12 @@
     <div class="flex items-center space-x-3">
       <span class="text-gray-700 font-medium">Sort by</span>
       <div class="relative inline-block w-60">
-        <select id="sort-menu" class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500">
-        <option value="<%= products_path(sort: 'price', direction: 'asc') %>">Price (Low to High)</option>
-        <option value="<%= products_path(sort: 'price', direction: 'desc') %>">Price (High to Low)</option>
-        <option value="<%= products_path(sort: 'name', direction: 'asc') %>">Name (A-Z)</option>
-        <option value="<%= products_path(sort: 'name', direction: 'desc') %>">Name (Z-A)</option>
-          
-        </select>
+      <select class="rounded-md border-gray-300 px-3 py-2 ml-2 cursor-pointer" onchange="location = this.value;">
+      <option value="<%= products_path(sort: 'price', direction: 'desc') %>" <%= "selected" if params[:sort] == 'price' && params[:direction] == 'desc' %>>Price: Low to High</option>
+      <option value="<%= products_path(sort: 'price', direction: 'asc') %>" <%= "selected" if params[:sort] == 'price' && params[:direction] == 'asc' %>>Price: High to Low</option>
+      <option value="<%= products_path(sort: 'name', direction: 'desc') %>" <%= "selected" if params[:sort] == 'name' && params[:direction] == 'desc' %>>Name: A to Z</option>
+      <option value="<%= products_path(sort: 'name', direction: 'asc') %>" <%= "selected" if params[:sort] == 'name' && params[:direction] == 'asc' %>>Name: Z to A</option>
+    </select>
       </div>
     </div>
   </div>
