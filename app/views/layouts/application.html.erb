@@ -13,9 +13,9 @@
     <script src="https://js.stripe.com/v3/"></script>
  </head>
 
- <body class="bg-gradient-to-r from-purple-300 via-indigo-200 to-purple-200">
+ <body class=" flex flex-col min-h-screen bg-gradient-to-r from-purple-300 via-indigo-200 to-purple-200">
  <%= render 'layouts/header' %>
-   <main class="container mx-auto px-5 flex">
+   <main class=" flex-grow container mx-auto px-5 flex">
      <%= yield %>
    </main>
     <%= render 'layouts/footer' %>
