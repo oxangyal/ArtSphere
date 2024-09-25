@@ -12,8 +12,28 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :name %>
+  <span>Title</span>
     <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100" %>
+  </div>
+
+  <div class="my-5">
+  <span>Author</span>
+    <%= form.text_field :artist_name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :material %>
+    <%= form.text_field :material, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100" %>
+ </div>
+
+ <div class="my-5">
+ <%= form.label :year %>
+ <%= form.text_field :year, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100" %>
+</div>
+
+  <div class="my-5">
+    <%= form.label :category_id, "Category" %>
+    <%= form.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name', product.category_id), { include_blank: true }, { class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100" } %>
   </div>
 
   <div class="my-5">
@@ -25,6 +45,11 @@
     <%= form.label :images %>
     <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100" %>
   </div>
+
+  <div class="my-5">
+    <%= form.radio_button :original, true %> Original
+    <%= form.radio_button :original, false %> Print
+ </div>
 
   <div class="my-5">
     <%= form.label :price %>

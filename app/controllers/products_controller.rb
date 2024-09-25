@@ -69,9 +69,9 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :description, :price, :category_id, images: [])
+      params.require(:product).permit(:name, :description, :price, :category_id,  { images: [] }, :material, :original, :year, :artist_name)
     end
-
+    
     def sort_column
       Product.column_names.include?(params[:sort]) ? params[:sort] : 'name'
     end
