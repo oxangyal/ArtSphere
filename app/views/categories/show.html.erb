@@ -16,10 +16,16 @@
     <%= @category.description %>
   </div>
 
+  <%= link_to categories_path, class: "ml-2 rounded-lg py-3 px-5 inline-block font-medium flex items-center" do %>
+    <i class="fas fa-arrow-left mr-2"></i> <!-- Font Awesome left arrow icon -->
+    Back to categories
+  <% end %>
+  
   <div id="products" class="min-w-full grid md:grid-cols-4 gap-8">
     <% @category.products.each do |product| %>
       <%= render "products/product", product: product %>
     <% end %>
+    
   </div>
 
   <% if current_admin %>

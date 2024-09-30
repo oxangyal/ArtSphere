@@ -8,6 +8,8 @@
    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   
   <%= javascript_importmap_tags %>
   <meta name="stripe-pk" content="<%= Rails.application.credentials.dig(:stripe, :pk) %>">
     <script src="https://js.stripe.com/v3/"></script>
