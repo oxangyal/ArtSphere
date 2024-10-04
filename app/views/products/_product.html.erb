@@ -1,7 +1,7 @@
 <%= link_to product do %>
   <div id="<%= dom_id product %>" class="max-w-sm  shadow rounded-lg p-2 mx-auto text-gray-700">
   <%= image_tag product.images.first, class:"w-full h-60 object-cover rounded-lg hover:brightness-75 transition:all duration:250" if product.images.any?  %>
-  
+
   <p class="my-5 text-black">
     <%= product.name %>
   </p>
@@ -10,5 +10,10 @@
     $ <%= product.price %>
   </p>
 
+  <% if current_user.favorited_products.include?(product) %>
+      <%= link_to 'Remove from Favorites', product_favorite_path(product), data: { turbo_method: :delete}, class: 'text-red-600' %>
+    <% else %>
+      <%= link_to 'Add to Favorites', product_favorite_path(product), data: { turbo_method: :post}, class: 'text-green-600' %>
+    <% end %>
 </div>
 <% end %>

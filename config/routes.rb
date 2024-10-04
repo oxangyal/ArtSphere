@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resource :buy_now, only: [:show, :create], controller: :buy_now do 
       get "success", on: :collection
     end
+
+    resource :favorite, only: [:create, :destroy]
   end
 
   resources :carts, only: [:create]
