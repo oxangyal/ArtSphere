@@ -10,10 +10,23 @@
     $ <%= product.price %>
   </p>
 
-  <% if current_user.favorited_products.include?(product) %>
-      <%= link_to 'Remove from Favorites', product_favorite_path(product), data: { turbo_method: :delete}, class: 'text-red-600' %>
+ <p class="my-5 text-gray-700">
+  <% if current_user.present? %>
+    <% if current_user.favorited_products.include?(product) %>
+      <%= link_to product_favorite_path(product), data: { turbo_method: :delete }, class: 'text-red-600' do %>
+        <i class="fas fa-heart text-red-500 text-2xl hover:text-red-700 transition duration-300"></i>
+      <% end %>
     <% else %>
-      <%= link_to 'Add to Favorites', product_favorite_path(product), data: { turbo_method: :post}, class: 'text-green-600' %>
+      <%= link_to product_favorite_path(product), data: { turbo_method: :post }, class: 'text-green-600' do %>
+        <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
+      <% end %>
     <% end %>
+  <% else %>
+    <%= link_to new_user_session_path, class: 'text-blue-600' do %>
+      <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
+    <% end %>
+  <% end %>
+</p>
+
 </div>
 <% end %>

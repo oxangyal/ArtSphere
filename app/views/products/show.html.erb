@@ -11,36 +11,36 @@
 
 
 
-  <div class="max-w-7xl w-full mx-auto px-10 mb-2"> 
+  <div class="max-w-7xl w-full mx-auto px-10 mb-2">
     <%= link_to "Artworks", products_path, class: "text-lg text-black-100 hover:text-gray-200" %>
     <%= link_to "> #{@product.category.name}", @product.category, class: "text-lg text-black-100 hover:text-gray-200" if @product.category %>
     <%= link_to "> #{@product.name}", @product, class: "text-lg text-black-100" %>
   </div>
   <div class="grid md:grid-cols-2">
-    <div class="max-w-md w-full mx-auto"> 
+    <div class="max-w-md w-full mx-auto">
       <% if @product.images.any? %>
         <%= image_tag @product.images.first, class: "w-full h-96 object-cover" %>
-        <div class="grid grid-cols-3 gap-4 mt-4"> 
+        <div class="grid grid-cols-3 gap-4 mt-4">
           <% @product.images[1..].each do |image| %>
             <%= image_tag image, class: "w-full h-32 object-cover" %>
           <% end %>
         </div>
       <% end %>
     </div>
-    <div class="max-w-xl flex flex-col gap-4"> 
+    <div class="max-w-xl flex flex-col gap-4">
       <h1 class="text-2xl font-bold text-indigo-900"> <%= @product.name %> </h1>
-      <div class="text-gray-700"> 
+      <div class="text-gray-700">
       <span class="font-bold">Artist:</span>
       <%= @product.artist_name %>
       </div>
-      <div class="text-gray-700"> 
+      <div class="text-gray-700">
       <span class="font-bold">Material:</span>
         <%= @product.material %>
          </div>
-          <div class="text-gray-700"> 
+          <div class="text-gray-700">
           <%= @product.description %>
           </div>
-          <div class="text-gray-700"> 
+          <div class="text-gray-700">
           <span class="font-bold">Year:</span>
           <%= @product.year %>
       </div>
@@ -49,12 +49,23 @@
       <%= @product.original ? "Original" : "Print" %>
     </div>
 
+    <div class="my-5">
+    <% if current_user.favorited_products.include?(@product) %>
+      <%= link_to product_favorite_path(@product), data: { turbo_method: :delete }, class: 'favorite-toggle' do %>
+        <i class="fas fa-heart text-red-500 text-2xl hover:text-red-700 transition duration-300"></i>
+      <% end %>
+    <% else %>
+      <%= link_to product_favorite_path(@product), data: { turbo_method: :post }, class: 'favorite-toggle' do %>
+        <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
+      <% end %>
+    <% end %>
+  </div>
 
       <span class="bg-green-500 p-2 rounded-lg text-green-50 mr-auto"> <%= number_to_currency @product.price %> </span>
       <div class="flex justify-between gap-8">
         <%= link_to "Buy Now", product_buy_now_path(@product), class: "rounded-md font-semibold p-4 text-center text-md bg-yellow-400 hover:bg-yellow-500 w-60 mr-auto" %>
         <%= link_to "Add to Cart", carts_path(product_id: @product.id), class: "rounded-md font-semibold p-4 text-center text-md bg-gray-400 hover:bg-gray-500 w-60 mr-auto" %>
-       
+
       </div>
     </div>
   </div>
@@ -63,7 +74,7 @@
     <div class="w-full flex justify-center items-center mt-16 gap-4">
       <%= link_to "Edit this product", edit_product_path(@product), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       <%= link_to "Back to products", products_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-     <%= button_to "Destroy this product", @product, method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium", 
+     <%= button_to "Destroy this product", @product, method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium",
     data: { turbo_method: :delete } %>
     </div>
   <% end %>
