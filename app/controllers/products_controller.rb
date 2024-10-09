@@ -71,11 +71,11 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :description, :price, :category_id,  { images: [] }, :material, :original, :year, :artist_name)
     end
-    
+
     def sort_column
       Product.column_names.include?(params[:sort]) ? params[:sort] : 'name'
     end
-  
+
     def sort_direction
       if params[:direction] == "asc"
         "desc"
@@ -83,7 +83,7 @@ class ProductsController < ApplicationController
         "asc"
       end
     end
-  
+
     def current_direction
       params[:direction] || "asc"
     end

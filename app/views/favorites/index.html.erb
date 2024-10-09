@@ -1,0 +1,47 @@
+<div class="container  mx-auto text-center">
+  <div>
+    <h1 class="mt-2"> My favorites</h1>
+    <p class="mb-4 mt-8">
+      Welcome, <span class="font-bold text-indigo-500"><%= current_user.email %></span>!
+    </p>
+    <div class="text-left hover:text-blue-700 mb-2">
+      <%= link_to '<i class="fas fa-arrow-left"></i> Back to Gallery'.html_safe, root_path, class: 'text-black-500 hover:text-blue-700 mb-4' %>
+    </div>
+  </div>
+
+  <div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <% @favorited_products.each do |product| %>
+        <div class="border p-4 rounded shadow-md hover:brightness-75 transition:all duration:250">
+          <% if product.images.attached? %>
+            <%= link_to image_tag(product.images.first, class: "w-full h-40 object-cover mb-2"), product_path(product) %>
+          <% end %>
+
+          <h2 class="text-md font-semibold mt-2 h-10">
+            <%= link_to product.name, product_path(product) %>
+          </h2>
+
+          <p class="text-gray-600 font-semibold text-sm mt-2">
+            <%= product.artist_name %>
+          </p>
+
+          <p class="text-gray-600 mt-2">
+            $<%= product.price %>
+          </p>
+
+          <div class="my-5">
+            <% if current_user.favorited_products.include?(product) %>
+              <%= link_to product_favorite_path(product), data: { turbo_method: :delete }, class: 'favorite-toggle' do %>
+                <i class="fas fa-heart text-red-500 text-2xl hover:text-red-700 transition duration-300"></i>
+              <% end %>
+            <% else %>
+              <%= link_to product_favorite_path(product), data: { turbo_method: :post }, class: 'favorite-toggle' do %>
+                <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

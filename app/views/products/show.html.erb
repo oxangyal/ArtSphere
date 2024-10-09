@@ -50,14 +50,18 @@
     </div>
 
     <div class="my-5">
-    <% if current_user.favorited_products.include?(@product) %>
-      <%= link_to product_favorite_path(@product), data: { turbo_method: :delete }, class: 'favorite-toggle' do %>
-        <i class="fas fa-heart text-red-500 text-2xl hover:text-red-700 transition duration-300"></i>
+    <% if current_user.present? %>
+      <% if current_user.favorited_products.include?(@product) %>
+        <%= link_to product_favorite_path(@product), data: { turbo_method: :delete }, class: 'favorite-toggle' do %>
+          <i class="fas fa-heart text-red-500 text-2xl hover:text-red-700 transition duration-300"></i>
+        <% end %>
+      <% else %>
+        <%= link_to product_favorite_path(@product), data: { turbo_method: :post }, class: 'favorite-toggle' do %>
+          <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
+        <% end %>
       <% end %>
     <% else %>
-      <%= link_to product_favorite_path(@product), data: { turbo_method: :post }, class: 'favorite-toggle' do %>
-        <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
-      <% end %>
+      <p>Please <%= link_to 'sign in', new_user_session_path %> to add this product to your favorites.</p>
     <% end %>
   </div>
 

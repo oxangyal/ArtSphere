@@ -1,6 +1,10 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
 
+  def index
+    @favorited_products = current_user.favorited_products
+  end
+  
   def create
     @product = Product.find(params[:product_id])
     current_user.favorites.create(product: @product)
