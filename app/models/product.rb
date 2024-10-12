@@ -4,14 +4,14 @@ class Product < ApplicationRecord
   belongs_to :category, optional: true
 
    # Association with favorites
-   has_many :favorites
+   has_many :favorites, dependent: :destroy
    has_many :favorited_by, through: :favorites, source: :user
 
   validates :price, presence: true, numericality: { greater_than: 0 }
   validate :images_validation
   validates :material, presence: true
   validates :artist_name, presence: true, length: { minimum: 2 }
-  validates :original, inclusion: { in: [true, false] } 
+  validates :original, inclusion: { in: [true, false] }
   validates :year, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1500, less_than_or_equal_to: Date.today.year }
 
   private
