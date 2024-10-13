@@ -9,13 +9,12 @@
   <% end %>
 </div>
 
-
-
   <div class="max-w-7xl w-full mx-auto px-10 mb-2">
     <%= link_to "Artworks", products_path, class: "text-lg text-black-100 hover:text-gray-200" %>
     <%= link_to "> #{@product.category.name}", @product.category, class: "text-lg text-black-100 hover:text-gray-200" if @product.category %>
     <%= link_to "> #{@product.name}", @product, class: "text-lg text-black-100" %>
   </div>
+
   <div class="grid md:grid-cols-2">
     <div class="max-w-md w-full mx-auto">
       <% if @product.images.any? %>
@@ -49,8 +48,8 @@
       <%= @product.original ? "Original" : "Print" %>
     </div>
 
-    <div class="my-5">
-    <% if current_user.present? %>
+    <div class="my-5 flex items-center">
+    <% if user_signed_in? %>
       <% if current_user.favorited_products.include?(@product) %>
         <%= link_to product_favorite_path(@product), data: { turbo_method: :delete }, class: 'favorite-toggle' do %>
           <i class="fas fa-heart text-red-500 text-2xl hover:text-red-700 transition duration-300"></i>
@@ -60,15 +59,15 @@
           <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
         <% end %>
       <% end %>
-    <% else %>
-      <p>Please <%= link_to 'sign in', new_user_session_path %> to add this product to your favorites.</p>
+     <% else %>
+       <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
     <% end %>
+        <span class="text-sm text-gray-600 ml-2"><%= @product.favorites.count %></span>
   </div>
 
       <span class="bg-green-500 p-2 rounded-lg text-green-50 mr-auto"> <%= number_to_currency @product.price %> </span>
       <div class="flex justify-between gap-8">
         <%= link_to "Buy Now", product_buy_now_path(@product), class: "rounded-md font-semibold p-4 text-center text-md bg-yellow-400 hover:bg-yellow-500 w-60 mr-auto" %>
-        <%= link_to "Add to Cart", carts_path(product_id: @product.id), class: "rounded-md font-semibold p-4 text-center text-md bg-gray-400 hover:bg-gray-500 w-60 mr-auto" %>
 
       </div>
     </div>

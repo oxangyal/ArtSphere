@@ -2,9 +2,9 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
 
   def index
-    @favorited_products = current_user.favorited_products
+    @favorited_products = current_user.favorited_products if user_signed_in?
   end
-  
+
   def create
     @product = Product.find(params[:product_id])
     current_user.favorites.create(product: @product)
