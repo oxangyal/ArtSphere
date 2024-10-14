@@ -16,16 +16,23 @@
       <%= link_to product_favorite_path(product), data: { turbo_method: :delete }, class: 'text-red-600' do %>
         <i class="fas fa-heart text-red-500 text-2xl hover:text-red-700 transition duration-300"></i>
       <% end %>
+    <% elsif product.favorites.any? %>
+          <%= link_to product_favorite_path(product), data: { turbo_method: :post }, class: 'text-green-600' do %>
+            <i class="fas fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
+          <% end %>
     <% else %>
-      <%= link_to product_favorite_path(product), data: { turbo_method: :post }, class: 'text-green-600' do %>
-        <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
-      <% end %>
+          <%= link_to product_favorite_path(product), data: { turbo_method: :post }, class: 'text-green-600' do %>
+            <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
+          <% end %>
+        <% end %>
+    <% else %>
+        <% if product.favorites.any? %>
+          <i class="fas fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
+        <% else %>
+          <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
+        <% end %>
     <% end %>
-  <% else %>
-      <i class="far fa-heart text-gray-500 text-2xl hover:text-gray-700 transition duration-300"></i>
-  <% end %>
       <span class="text-sm text-gray-600 ml-2"><%= product.favorites.count %></span>
 </p>
-
 </div>
 <% end %>
