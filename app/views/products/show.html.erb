@@ -15,7 +15,7 @@
     <%= link_to "> #{@product.name}", @product, class: "text-lg text-black-100" %>
   </div>
 
-  <div class="grid md:grid-cols-2">
+  <div class="grid md:grid-cols-2 gap-4">
     <div class="max-w-md w-full mx-auto">
       <% if @product.images.any? %>
         <%= image_tag @product.images.first, class: "w-full h-96 object-cover" %>
@@ -47,7 +47,7 @@
       <span class="font-bold">Available for sale:</span>
       <%= @product.original ? "Original" : "Print" %>
     </div>
-    <div class="my-5 flex items-center">
+    <div class="my-5 flex items-center gap-2">
     <% if user_signed_in? %>
       <% if current_user.favorited_products.include?(@product) %>
         <%= link_to product_favorite_path(@product), data: { turbo_method: :delete }, class: 'favorite-toggle' do %>
