@@ -11,8 +11,8 @@
       <select class="rounded-md border-gray-300 px-3 py-2 ml-2 cursor-pointer" onchange="location = this.value;">
       <option value="<%= products_path(sort: 'price', direction: 'desc') %>" <%= "selected" if params[:sort] == 'price' && params[:direction] == 'desc' %>>Price: Low to High</option>
       <option value="<%= products_path(sort: 'price', direction: 'asc') %>" <%= "selected" if params[:sort] == 'price' && params[:direction] == 'asc' %>>Price: High to Low</option>
-      <option value="<%= products_path(sort: 'created_at', direction: 'desc') %>" <%= "selected" if params[:sort] == 'created_at' && params[:direction] == 'desc' %>>Fresh arrivals</option>
-      <option value="<%= products_path(sort: 'created_at', direction: 'asc') %>" <%= "selected" if params[:sort] == 'created_at' && params[:direction] == 'asc' %>>Oldest finds</option>
+      <option value="<%= products_path(sort: 'created_at', direction: 'asc') %>" <%= "selected" if params[:sort] == 'created_at' && params[:direction] == 'asc' %>>Fresh arrivals</option>
+      <option value="<%= products_path(sort: 'created_at', direction: 'desc') %>" <%= "selected" if params[:sort] == 'created_at' && params[:direction] == 'desc' %>>Oldest finds</option>
       <option value="<%= products_path(sort: 'name', direction: 'desc') %>" <%= "selected" if params[:sort] == 'name' && params[:direction] == 'desc' %>>Name: A to Z</option>
       <option value="<%= products_path(sort: 'name', direction: 'asc') %>" <%= "selected" if params[:sort] == 'name' && params[:direction] == 'asc' %>>Name: Z to A</option>
     </select>
