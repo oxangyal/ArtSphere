@@ -20,7 +20,7 @@ class Product < ApplicationRecord
     if images.attached?
       images.each do |image|
         if !image.content_type.in?(%w(image/jpeg image/png))
-          errors.add(:images, 'must be a JPEG or PNG file')
+          errors.add(:images, 'must be a JPEG or PNG file') if images.blank?
         end
       end
     else

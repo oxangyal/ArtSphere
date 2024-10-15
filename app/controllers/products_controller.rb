@@ -32,16 +32,20 @@ class ProductsController < ApplicationController
         format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @product }
       else
+        Rails.logger.debug @product.errors.full_messages  # Log error messages
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end
 
+
   # PATCH/PUT /products/1 or /products/1.json
   def update
     new_product_params = product_params.to_unsafe_h
-    new_product_params.delete("images") if new_product_params["images"].all?(&:blank?)
+    if new_product_params["images"].present? && new_product_params["images"].all?(&:blank?)
+      new_product_params.delete("images")
+    end
     respond_to do |format|
       if @product.update(new_product_params)
         format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
@@ -52,6 +56,7 @@ class ProductsController < ApplicationController
       end
     end
   end
+
 
   # DELETE /products/1 or /products/1.json
   def destroy
@@ -71,8 +76,10 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :description, :price, :category_id,  { images: [] }, :material, :original, :year, :artist_name)
-    end
+    params.require(:product).permit(
+      :name, :price, :material, :artist_name, :original, :year, :category_id,  :description, images: []
+    )
+  end
 
     def sort_column
       Product.column_names.include?(params[:sort]) ? params[:sort] : 'name'
