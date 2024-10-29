@@ -22,3 +22,9 @@ Art Sphere is an e-commerce platform built with **Ruby on Rails** that allows a 
 - **Secure Payments**: Integration with **Stripe** ensures smooth and secure transactions.
 - **Responsive Design**: The application is mobile-friendly and adjusts to various screen sizes using Tailwind CSS.
 
+
+### Admin/gallery owner
+![Admin](./app/assets/images/admin.gif)
+
+### Customer and purchase with Stripe
+![Customer and purchase via Stripe](./app/assets/images/user.gif)
